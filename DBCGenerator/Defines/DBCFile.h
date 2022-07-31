@@ -34,7 +34,7 @@ public:
         header.record_count = recordCounter;
         header.field_count = fieldCount;
         header.record_size = recordSize;
-        header.string_block_size = stringCounter;
+        header.string_block_size = strings.size();
 
         char fileName[256] = {};
         snprintf(fileName, 255, "%s.dbc", name);
@@ -66,8 +66,8 @@ protected:
     uint32 const recordSize;
 
     // DBC File Writing
-    uint32 stringCounter = 0;
     ByteBuffer strings;
+    std::map<std::string, uint32 /*position*/> uniqueStrings;
     uint32 recordCounter = 0;
     ByteBuffer records;
 
@@ -76,8 +76,12 @@ protected:
     
     uint32 WriteString(std::string const& str)
     {
+        auto itr = uniqueStrings.find(str);
+        if (itr != uniqueStrings.end())
+            return itr->second;
+
         uint32 pos = strings.wpos();
-        stringCounter++;
+        uniqueStrings.insert({ str, pos });
         strings << str;
         return pos;
     };
