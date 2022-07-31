@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Database\Database.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include="Database\DbField.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include="Database\QueryObject.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include="Database\QueryResult.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Tables\Spell.cpp">
+      <Filter>Tables</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Database\Database.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include="Database\DbField.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include="Database\QueryObjects.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include="Database\QueryResult.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include="Database\SafeQueue.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include="Defines\Common.h">
+      <Filter>Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="Defines\ByteBuffer.h">
+      <Filter>Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="Defines\DBCFile.h">
+      <Filter>Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="Tables\Spell.h">
+      <Filter>Tables</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Database">
+      <UniqueIdentifier>{774c45f0-01e8-4712-9236-2ef70cb287f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Defines">
+      <UniqueIdentifier>{36f5f2bf-3ee5-4eaa-b3b4-581ef756a46f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tables">
+      <UniqueIdentifier>{6be4b2b1-3033-4cdb-a15e-832926bf4ac3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
