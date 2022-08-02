@@ -94,7 +94,9 @@
     <ClCompile Include="Database\QueryObject.cpp" />
     <ClCompile Include="Database\QueryResult.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Tables\SkillLineAbility.cpp" />
     <ClCompile Include="Tables\Spell.cpp" />
+    <ClInclude Include="Tables\SkillLineAbility.h" />
     <ClInclude Include="Tables\Spell.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

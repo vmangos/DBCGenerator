@@ -17,6 +17,9 @@
     <ClCompile Include="Tables\Spell.cpp">
       <Filter>Tables</Filter>
     </ClCompile>
+    <ClCompile Include="Tables\SkillLineAbility.cpp">
+      <Filter>Tables</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Database\Database.h">
@@ -44,6 +47,9 @@
       <Filter>Defines</Filter>
     </ClInclude>
     <ClInclude Include="Tables\Spell.h">
+      <Filter>Tables</Filter>
+    </ClInclude>
+    <ClInclude Include="Tables\SkillLineAbility.h">
       <Filter>Tables</Filter>
     </ClInclude>
   </ItemGroup>

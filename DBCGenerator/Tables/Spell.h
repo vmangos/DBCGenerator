@@ -1,3 +1,6 @@
+#ifndef _SPELL_DBC_H
+#define _SPELL_DBC_H
+
 #include <array>
 #include <string>
 #include "..\Defines\Common.h"
@@ -125,3 +128,5 @@ struct SpellDBC : DBCFile
     }
     void WriteRowToCSV(SpellEntry const* pSpell);
 };
+
+#endif

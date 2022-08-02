@@ -13,6 +13,7 @@
 
 #include "Database\Database.h"
 #include "Tables\Spell.h"
+#include "Tables\SkillLineAbility.h"
 
 Database GameDb;
 
@@ -81,6 +82,11 @@ int main()
         case 1: // spell_template
         {
             dbc = std::make_unique<SpellDBC>();
+            break;
+        }
+        case 2: // skill_line_ability
+        {
+            dbc = std::make_unique<SkillLineAbilityDBC>();
             break;
         }
         default:
