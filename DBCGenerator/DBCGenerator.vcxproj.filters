@@ -20,6 +20,9 @@
     <ClCompile Include="Tables\SkillLineAbility.cpp">
       <Filter>Tables</Filter>
     </ClCompile>
+    <ClCompile Include="Tables\AreaTrigger.cpp">
+      <Filter>Tables</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Database\Database.h">
@@ -50,6 +53,9 @@
       <Filter>Tables</Filter>
     </ClInclude>
     <ClInclude Include="Tables\SkillLineAbility.h">
+      <Filter>Tables</Filter>
+    </ClInclude>
+    <ClInclude Include="Tables\AreaTrigger.h">
       <Filter>Tables</Filter>
     </ClInclude>
   </ItemGroup>

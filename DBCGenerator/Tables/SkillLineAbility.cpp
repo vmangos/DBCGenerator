@@ -9,9 +9,7 @@ void SkillLineAbilityDBC::LoadFromDB(uint32 build)
     if (build)
         query += " WHERE `build`=" + std::to_string(build);
 
-    // Actually loading the spells.
     auto result = GameDb.Query(query.c_str());
-
     if (!result)
         return;
 

@@ -9,9 +9,7 @@ void SpellDBC::LoadFromDB(uint32 build)
     if (build)
         query += " t1 WHERE `build`=(SELECT max(`build`) FROM `spell_template` t2 WHERE t1.`entry`=t2.`entry` && `build` <= " + std::to_string(build) + ")";
     
-    // Actually loading the spells.
     auto result = GameDb.Query(query.c_str());
-
     if (!result)
         return;
 

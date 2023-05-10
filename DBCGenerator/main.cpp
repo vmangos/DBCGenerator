@@ -12,6 +12,7 @@
 #include <vector>
 
 #include "Database\Database.h"
+#include "Tables\AreaTrigger.h"
 #include "Tables\Spell.h"
 #include "Tables\SkillLineAbility.h"
 
@@ -73,6 +74,7 @@ int main()
     printf("\nSelect table:\n");
     printf("1. spell_template\n");
     printf("2. skill_line_ability\n");
+    printf("3. areatrigger_template\n");
     printf("> ");
     uint32 option = GetUInt32();
 
@@ -87,6 +89,11 @@ int main()
         case 2: // skill_line_ability
         {
             dbc = std::make_unique<SkillLineAbilityDBC>();
+            break;
+        }
+        case 3: // areatrigger_template
+        {
+            dbc = std::make_unique<AreaTriggerDBC>();
             break;
         }
         default:
