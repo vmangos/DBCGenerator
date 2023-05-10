@@ -23,7 +23,7 @@ struct AreaTriggerEntry
 struct AreaTriggerDBC : DBCFile
 {
     AreaTriggerDBC() : DBCFile("AreaTrigger", 10, 40) {};
-    std::map<uint32, AreaTriggerEntry> rows;
+    std::vector<AreaTriggerEntry> rows;
 
     void LoadFromDB(uint32 build) final;
     void WriteRecordToDBC(AreaTriggerEntry const* pSkill);

@@ -8,6 +8,7 @@ void AreaTriggerDBC::LoadFromDB(uint32 build)
     std::string query = "SELECT `id`, `map_id`, `x`, `y`, `z`, `radius`, `box_x`, `box_y`, `box_z`, `box_orientation` FROM `areatrigger_template`";
     if (build)
         query += " t1 WHERE `build`=(SELECT max(`build`) FROM `areatrigger_template` t2 WHERE t1.`id`=t2.`id` && `build` <= " + std::to_string(build) + ")";
+    query += " ORDER BY `map_id`, `id`";
 
     auto result = GameDb.Query(query.c_str());
     if (!result)
@@ -17,9 +18,8 @@ void AreaTriggerDBC::LoadFromDB(uint32 build)
     {
         DbField* fields = result->fetchCurrentRow();
 
-        uint32 id = fields[0].GetUInt32();
-        AreaTriggerEntry& areaTrigger = rows[id];
-        areaTrigger.Id = id;
+        AreaTriggerEntry areaTrigger;
+        areaTrigger.Id = fields[0].GetUInt32();
         areaTrigger.MapId = fields[1].GetUInt32();
         areaTrigger.X = fields[2].GetFloat();
         areaTrigger.Y = fields[3].GetFloat();
@@ -29,6 +29,7 @@ void AreaTriggerDBC::LoadFromDB(uint32 build)
         areaTrigger.BoxY = fields[7].GetFloat();
         areaTrigger.BoxZ = fields[8].GetFloat();
         areaTrigger.BoxO = fields[9].GetFloat();
+        rows.push_back(areaTrigger);
 
     } while (result->NextRow());
 }
@@ -56,7 +57,7 @@ void AreaTriggerDBC::SaveAllRowsToCSV()
 
     WriteHeaderToCSV();
     for (auto const& itr : rows)
-        WriteRowToCSV(&itr.second);
+        WriteRowToCSV(&itr);
 }
 
 void AreaTriggerDBC::SaveSingleRowToCSV(uint32 id)
@@ -64,11 +65,12 @@ void AreaTriggerDBC::SaveSingleRowToCSV(uint32 id)
     if (!CreateCSV())
         return;
 
-    auto itr = rows.find(id);
+    auto itr = std::find_if(rows.begin(), rows.end(),
+        [id](AreaTriggerEntry const& m) -> bool { return m.Id == id; });
     if (itr == rows.end())
         return;
 
-    WriteRowToCSV(&itr->second);
+    WriteRowToCSV(&(*itr));
 }
 
 void AreaTriggerDBC::WriteRecordToDBC(AreaTriggerEntry const* pTrigger)
@@ -89,5 +91,5 @@ void AreaTriggerDBC::WriteRecordToDBC(AreaTriggerEntry const* pTrigger)
 void AreaTriggerDBC::WriteAllRecordsToDBC()
 {
     for (auto const& itr : rows)
-        WriteRecordToDBC(&itr.second);
+        WriteRecordToDBC(&itr);
 }
