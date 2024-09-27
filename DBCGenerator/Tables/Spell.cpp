@@ -123,9 +123,9 @@ void SpellDBC::LoadFromDB(uint32 build)
         spell.EffectChainTarget[0] = fields[100].GetUInt32();
         spell.EffectChainTarget[1] = fields[101].GetUInt32();
         spell.EffectChainTarget[2] = fields[102].GetUInt32();
-        spell.EffectItemType[0] = fields[103].GetUInt32();
-        spell.EffectItemType[1] = fields[104].GetUInt32();
-        spell.EffectItemType[2] = fields[105].GetUInt32();
+        spell.EffectItemType[0] = fields[103].GetUInt64() & 0xFFFFFFFF;
+        spell.EffectItemType[1] = fields[104].GetUInt64() & 0xFFFFFFFF;
+        spell.EffectItemType[2] = fields[105].GetUInt64() & 0xFFFFFFFF;
         spell.EffectMiscValue[0] = fields[106].GetInt32();
         spell.EffectMiscValue[1] = fields[107].GetInt32();
         spell.EffectMiscValue[2] = fields[108].GetInt32();
