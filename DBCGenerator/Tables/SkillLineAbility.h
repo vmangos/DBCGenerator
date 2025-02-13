@@ -32,15 +32,6 @@ struct SkillLineAbilityDBC : DBCFile
     void LoadFromDB(uint32 build) final;
     void WriteRecordToDBC(SkillLineAbilityEntry const* pSkill);
     void WriteAllRecordsToDBC() final;
-
-    void SaveAllRowsToCSV() final;
-    void SaveSingleRowToCSV(uint32 id) final;
-    void WriteHeaderToCSV() final
-    {
-        csvFile << "\"ID\",\"SkillLine\",\"Spell\",\"RaceMask\",\"ClassMask\",\"ExcludeRace\",\"ExcludeClass\",\"MinSkillLineRank\",\"SupercededBySpell\",\"AquireMethod\",\"TrivialSkillLineRankHigh\",\"TrivialSkillLineRankLow\",\"CharacterPoints_1\",\"CharacterPoints_2\",\"NumSkillUps\"";
-        csvFile << "\n";
-    }
-    void WriteRowToCSV(SkillLineAbilityEntry const* pSkill);
 };
 
 #endif

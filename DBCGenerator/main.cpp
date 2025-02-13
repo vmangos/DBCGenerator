@@ -15,6 +15,7 @@
 #include "Tables\AreaTrigger.h"
 #include "Tables\Spell.h"
 #include "Tables\SkillLineAbility.h"
+#include "Tables\WorldSafeLocs.h"
 
 Database GameDb;
 
@@ -75,6 +76,7 @@ int main()
     printf("1. spell_template\n");
     printf("2. skill_line_ability\n");
     printf("3. areatrigger_template\n");
+    printf("4. world_safe_locs\n");
     printf("> ");
     uint32 option = GetUInt32();
 
@@ -96,6 +98,11 @@ int main()
             dbc = std::make_unique<AreaTriggerDBC>();
             break;
         }
+        case 4: // world_safe_locs
+        {
+            dbc = std::make_unique<WorldSafeLocsDBC>();
+            break;
+        }
         default:
         {
             printf("Wrong selection.\n");
@@ -106,45 +113,8 @@ int main()
     printf("Loading database...\n");
     dbc->LoadFromDB(build);
 
-    printf("\nSelect export format:\n");
-    printf("1. DBC\n");
-    printf("2. CSV\n");
-    printf("> ");
-    option = GetUInt32();
-
-    switch (option)
-    {
-        case 1: // DBC
-        {
-            dbc->SaveToDBC();
-            break;
-        }
-        case 2: // CSV
-        {
-            printf("\n");
-            printf("1. Export single row\n");
-            printf("2. Export all rows\n");
-            printf("> ");
-            option = GetUInt32();
-            switch (option)
-            {
-                case 1:
-                {
-                    printf("\nId:\n");
-                    printf("> ");
-                    uint32 spellId = GetUInt32();
-                    dbc->SaveSingleRowToCSV(spellId);
-                    break;
-                }
-                case 2:
-                {
-                    dbc->SaveAllRowsToCSV();
-                    break;
-                }
-            }
-            break;
-        }
-    }
+    printf("Exporting to dbc...\n");
+    dbc->SaveToDBC();
 
     printf("Done.");
     getchar();

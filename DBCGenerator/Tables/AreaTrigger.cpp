@@ -34,45 +34,6 @@ void AreaTriggerDBC::LoadFromDB(uint32 build)
     } while (result->NextRow());
 }
 
-void AreaTriggerDBC::WriteRowToCSV(AreaTriggerEntry const* pTrigger)
-{
-    WriteToCSV(pTrigger->Id);
-    WriteToCSV(pTrigger->MapId);
-    WriteToCSV(pTrigger->X);
-    WriteToCSV(pTrigger->Y);
-    WriteToCSV(pTrigger->Z);
-    WriteToCSV(pTrigger->Radius);
-    WriteToCSV(pTrigger->BoxX);
-    WriteToCSV(pTrigger->BoxY);
-    WriteToCSV(pTrigger->BoxZ);
-    WriteToCSV(pTrigger->BoxO);
-
-    csvFile << "\n";
-}
-
-void AreaTriggerDBC::SaveAllRowsToCSV()
-{
-    if (!CreateCSV())
-        return;
-
-    WriteHeaderToCSV();
-    for (auto const& itr : rows)
-        WriteRowToCSV(&itr);
-}
-
-void AreaTriggerDBC::SaveSingleRowToCSV(uint32 id)
-{
-    if (!CreateCSV())
-        return;
-
-    auto itr = std::find_if(rows.begin(), rows.end(),
-        [id](AreaTriggerEntry const& m) -> bool { return m.Id == id; });
-    if (itr == rows.end())
-        return;
-
-    WriteRowToCSV(&(*itr));
-}
-
 void AreaTriggerDBC::WriteRecordToDBC(AreaTriggerEntry const* pTrigger)
 {
     recordCounter++;

@@ -56,8 +56,6 @@ public:
 
         fclose(pFile);
     }
-    virtual void SaveAllRowsToCSV() = 0;
-    virtual void SaveSingleRowToCSV(uint32 id) = 0;
 
 protected:
     // DBC File Constants
@@ -97,34 +95,6 @@ protected:
         records << flags;
     };
     virtual void WriteAllRecordsToDBC() = 0;
-
-    bool CreateCSV()
-    {
-        char fileName[256] = {};
-        snprintf(fileName, 255, "%s.csv", name);
-        csvFile.open(fileName, std::ofstream::out);
-        if (!csvFile.is_open())
-        {
-            printf("Failed to create file.\n");
-            return false;
-        }
-
-        return true;
-    }
-    template<typename T>
-    void WriteToCSV(T value)
-    {
-        csvFile << "\"";
-        csvFile << value;
-        csvFile << "\",";
-    }
-    void WriteToCSV(std::string const& value)
-    {
-        csvFile << "\"";
-        csvFile << ReplaceAll(ReplaceAll(ReplaceAll(value, "\n", ""), "\"", "\"\""), "\r", "");
-        csvFile << "\",";
-    }
-    virtual void WriteHeaderToCSV() = 0;
 };
 
 #endif

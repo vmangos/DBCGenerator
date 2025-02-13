@@ -28,15 +28,6 @@ struct AreaTriggerDBC : DBCFile
     void LoadFromDB(uint32 build) final;
     void WriteRecordToDBC(AreaTriggerEntry const* pSkill);
     void WriteAllRecordsToDBC() final;
-
-    void SaveAllRowsToCSV() final;
-    void SaveSingleRowToCSV(uint32 id) final;
-    void WriteHeaderToCSV() final
-    {
-        csvFile << "\"ID\",\"ContinentID\",\"X\",\"Y\",\"Z\",\"Radius\",\"BoxLength\",\"BoxWidth\",\"BoxHeight\",\"BoxYaw\"";
-        csvFile << "\n";
-    }
-    void WriteRowToCSV(AreaTriggerEntry const* pSkill);
 };
 
 #endif

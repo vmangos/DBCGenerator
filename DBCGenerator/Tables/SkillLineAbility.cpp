@@ -35,49 +35,6 @@ void SkillLineAbilityDBC::LoadFromDB(uint32 build)
     } while (result->NextRow());
 }
 
-void SkillLineAbilityDBC::WriteRowToCSV(SkillLineAbilityEntry const* pSkill)
-{
-    WriteToCSV(pSkill->Id);
-    WriteToCSV(pSkill->SkillId);
-    WriteToCSV(pSkill->SpellId);
-    WriteToCSV(pSkill->RaceMask);
-    WriteToCSV(pSkill->ClassMask);
-    WriteToCSV(pSkill->RaceMaskNot);
-    WriteToCSV(pSkill->ClassMaskNot);
-    WriteToCSV(pSkill->ReqSkillValue);
-    WriteToCSV(pSkill->ForwardSpellId);
-    WriteToCSV(pSkill->LearnOnGetSkill);
-    WriteToCSV(pSkill->MaxValue);
-    WriteToCSV(pSkill->MinValue);
-    for (int i = 0; i < 2; i++)
-        WriteToCSV(pSkill->CharacterPoints[i]);
-    WriteToCSV(pSkill->ReqTrainPoints);
-
-    csvFile << "\n";
-}
-
-void SkillLineAbilityDBC::SaveAllRowsToCSV()
-{
-    if (!CreateCSV())
-        return;
-
-    WriteHeaderToCSV();
-    for (auto const& itr : rows)
-        WriteRowToCSV(&itr.second);
-}
-
-void SkillLineAbilityDBC::SaveSingleRowToCSV(uint32 id)
-{
-    if (!CreateCSV())
-        return;
-
-    auto itr = rows.find(id);
-    if (itr == rows.end())
-        return;
-
-    WriteRowToCSV(&itr->second);
-}
-
 void SkillLineAbilityDBC::WriteRecordToDBC(SkillLineAbilityEntry const* pSkill)
 {
     recordCounter++;

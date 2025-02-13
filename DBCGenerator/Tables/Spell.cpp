@@ -166,152 +166,45 @@ void SpellDBC::LoadFromDB(uint32 build)
         spell.RequiredAuraVision = fields[143].GetUInt32();
 
     } while (result->NextRow());
-}
 
-void SpellDBC::WriteRowToCSV(SpellEntry const* pSpell)
-{
-    WriteToCSV(pSpell->Id);
-    WriteToCSV(pSpell->School);
-    WriteToCSV(pSpell->Category);
-    WriteToCSV(pSpell->CastUI);
-    WriteToCSV(pSpell->Dispel);
-    WriteToCSV(pSpell->Mechanic);
-    WriteToCSV(pSpell->Attributes);
-    WriteToCSV(pSpell->AttributesEx);
-    WriteToCSV(pSpell->AttributesEx2);
-    WriteToCSV(pSpell->AttributesEx3);
-    WriteToCSV(pSpell->AttributesEx4);
-    WriteToCSV(pSpell->Stances);
-    WriteToCSV(pSpell->StancesNot);
-    WriteToCSV(pSpell->Targets);
-    WriteToCSV(pSpell->TargetCreatureType);
-    WriteToCSV(pSpell->RequiresSpellFocus);
-    WriteToCSV(pSpell->CasterAuraState);
-    WriteToCSV(pSpell->TargetAuraState);
-    WriteToCSV(pSpell->CastingTimeIndex);
-    WriteToCSV(pSpell->RecoveryTime);
-    WriteToCSV(pSpell->CategoryRecoveryTime);
-    WriteToCSV(pSpell->InterruptFlags);
-    WriteToCSV(pSpell->AuraInterruptFlags);
-    WriteToCSV(pSpell->ChannelInterruptFlags);
-    WriteToCSV(pSpell->ProcFlags);
-    WriteToCSV(pSpell->ProcChance);
-    WriteToCSV(pSpell->ProcCharges);
-    WriteToCSV(pSpell->MaxLevel);
-    WriteToCSV(pSpell->BaseLevel);
-    WriteToCSV(pSpell->SpellLevel);
-    WriteToCSV(pSpell->DurationIndex);
-    WriteToCSV(pSpell->PowerType);
-    WriteToCSV(pSpell->ManaCost);
-    WriteToCSV(pSpell->ManaCostPerlevel);
-    WriteToCSV(pSpell->ManaPerSecond);
-    WriteToCSV(pSpell->ManaPerSecondPerLevel);
-    WriteToCSV(pSpell->RangeIndex);
-    WriteToCSV(pSpell->Speed);
-    WriteToCSV(pSpell->ModalNextSpell);
-    WriteToCSV(pSpell->StackAmount);
-    for (int i = 0; i < MAX_SPELL_TOTEMS; i++)
-        WriteToCSV(pSpell->Totem[i]);
-    for (int i = 0; i < MAX_SPELL_REAGENTS; i++)
-        WriteToCSV(pSpell->Reagent[i]);
-    for (int i = 0; i < MAX_SPELL_REAGENTS; i++)
-        WriteToCSV(pSpell->ReagentCount[i]);
-    WriteToCSV(pSpell->EquippedItemClass);
-    WriteToCSV(pSpell->EquippedItemSubClassMask);
-    WriteToCSV(pSpell->EquippedItemInventoryTypeMask);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->Effect[i]);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->EffectDieSides[i]);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->EffectBaseDice[i]);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->EffectDicePerLevel[i]);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->EffectRealPointsPerLevel[i]);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->EffectBasePoints[i]);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->EffectMechanic[i]);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->EffectImplicitTargetA[i]);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->EffectImplicitTargetB[i]);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->EffectRadiusIndex[i]);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->EffectApplyAuraName[i]);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->EffectAmplitude[i]);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->EffectMultipleValue[i]);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->EffectChainTarget[i]);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->EffectItemType[i]);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->EffectMiscValue[i]);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->EffectTriggerSpell[i]);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->EffectPointsPerComboPoint[i]);
-    WriteToCSV(pSpell->SpellVisual);
-    WriteToCSV(pSpell->SpellVisual2);
-    WriteToCSV(pSpell->SpellIconID);
-    WriteToCSV(pSpell->ActiveIconID);
-    WriteToCSV(pSpell->SpellPriority);
-    for (int i = 0; i < MAX_DBC_LOCALE; i++)
-        WriteToCSV(pSpell->SpellName[i]);
-    WriteToCSV(pSpell->SpellNameFlags);
-    for (int i = 0; i < MAX_DBC_LOCALE; i++)
-        WriteToCSV(pSpell->Rank[i]);
-    WriteToCSV(pSpell->RankFlags);
-    for (int i = 0; i < MAX_DBC_LOCALE; i++)
-        WriteToCSV(pSpell->Description[i]);
-    WriteToCSV(pSpell->DescriptionFlags);
-    for (int i = 0; i < MAX_DBC_LOCALE; i++)
-        WriteToCSV(pSpell->ToolTip[i]);
-    WriteToCSV(pSpell->ToolTipFlags);
-    WriteToCSV(pSpell->ManaCostPercentage);
-    WriteToCSV(pSpell->StartRecoveryCategory);
-    WriteToCSV(pSpell->StartRecoveryTime);
-    WriteToCSV(pSpell->MaxTargetLevel);
-    WriteToCSV(pSpell->SpellFamilyName);
-    WriteToCSV(int(pSpell->SpellFamilyFlags & 0xFFFFFFFF));
-    WriteToCSV(int((pSpell->SpellFamilyFlags >> 32) & 0xFFFFFFFF));
-    WriteToCSV(pSpell->MaxAffectedTargets);
-    WriteToCSV(pSpell->DmgClass);
-    WriteToCSV(pSpell->PreventionType);
-    WriteToCSV(pSpell->StanceBarOrder);
-    for (int i = 0; i < MAX_EFFECT_INDEX; i++)
-        WriteToCSV(pSpell->DmgMultiplier[i]);
-    WriteToCSV(pSpell->MinFactionId);
-    WriteToCSV(pSpell->MinReputation);
-    WriteToCSV(pSpell->RequiredAuraVision);
-
-    csvFile << "\n";
-}
-
-void SpellDBC::SaveAllRowsToCSV()
-{
-    if (!CreateCSV())
+    //                             0        1            2            3            4            5            6            7                   8                   9                   10                  11                  12                  13                  14                  15                  16                  17                  18                  19                      20                      21                      22                      23                      24
+    result = GameDb.Query("SELECT `entry`, `name_loc1`, `name_loc2`, `name_loc3`, `name_loc4`, `name_loc5`, `name_loc6`, `nameSubtext_loc1`, `nameSubtext_loc2`, `nameSubtext_loc3`, `nameSubtext_loc4`, `nameSubtext_loc5`, `nameSubtext_loc6`, `description_loc1`, `description_loc2`, `description_loc3`, `description_loc4`, `description_loc5`, `description_loc6`, `auraDescription_loc1`, `auraDescription_loc2`, `auraDescription_loc3`, `auraDescription_loc4`, `auraDescription_loc5`, `auraDescription_loc6` FROM `locales_spell`");
+    if (!result)
         return;
 
-    WriteHeaderToCSV();
-    for (auto const& itr : rows)
-        WriteRowToCSV(&itr.second);
-}
+    do
+    {
+        DbField* fields = result->fetchCurrentRow();
 
-void SpellDBC::SaveSingleRowToCSV(uint32 id)
-{
-    if (!CreateCSV())
-        return;
+        uint32 spellId = fields[0].GetUInt32();
+        SpellEntry& spell = rows[spellId];
 
-    auto itr = rows.find(id);
-    if (itr == rows.end())
-        return;
+        spell.SpellName[1] = fields[1].GetCppString();
+        spell.SpellName[2] = fields[2].GetCppString();
+        spell.SpellName[3] = fields[3].GetCppString();
+        spell.SpellName[4] = fields[4].GetCppString();
+        spell.SpellName[5] = fields[5].GetCppString();
+        spell.SpellName[6] = fields[6].GetCppString();
+        spell.Rank[1] = fields[7].GetCppString();
+        spell.Rank[2] = fields[8].GetCppString();
+        spell.Rank[3] = fields[9].GetCppString();
+        spell.Rank[4] = fields[10].GetCppString();
+        spell.Rank[5] = fields[11].GetCppString();
+        spell.Rank[6] = fields[12].GetCppString();
+        spell.Description[1] = fields[13].GetCppString();
+        spell.Description[2] = fields[14].GetCppString();
+        spell.Description[3] = fields[15].GetCppString();
+        spell.Description[4] = fields[16].GetCppString();
+        spell.Description[5] = fields[17].GetCppString();
+        spell.Description[6] = fields[18].GetCppString();
+        spell.ToolTip[1] = fields[19].GetCppString();
+        spell.ToolTip[2] = fields[20].GetCppString();
+        spell.ToolTip[3] = fields[21].GetCppString();
+        spell.ToolTip[4] = fields[22].GetCppString();
+        spell.ToolTip[5] = fields[23].GetCppString();
+        spell.ToolTip[6] = fields[24].GetCppString();
 
-    WriteRowToCSV(&itr->second);
+    } while (result->NextRow());
 }
 
 void SpellDBC::WriteRecordToDBC(SpellEntry const* pSpell)
