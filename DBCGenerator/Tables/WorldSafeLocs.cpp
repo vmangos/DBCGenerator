@@ -52,6 +52,7 @@ void WorldSafeLocsDBC::LoadFromDB(uint32 build)
                 loc.Name[4] = fields[4].GetCppString();
                 loc.Name[5] = fields[5].GetCppString();
                 loc.Name[6] = fields[6].GetCppString();
+                break;
             }
         }
 
