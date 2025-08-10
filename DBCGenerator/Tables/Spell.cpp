@@ -167,8 +167,8 @@ void SpellDBC::LoadFromDB(uint32 build)
 
     } while (result->NextRow());
 
-    //                             0        1            2            3            4            5            6            7                   8                   9                   10                  11                  12                  13                  14                  15                  16                  17                  18                  19                      20                      21                      22                      23                      24
-    result = GameDb.Query("SELECT `entry`, `name_loc1`, `name_loc2`, `name_loc3`, `name_loc4`, `name_loc5`, `name_loc6`, `nameSubtext_loc1`, `nameSubtext_loc2`, `nameSubtext_loc3`, `nameSubtext_loc4`, `nameSubtext_loc5`, `nameSubtext_loc6`, `description_loc1`, `description_loc2`, `description_loc3`, `description_loc4`, `description_loc5`, `description_loc6`, `auraDescription_loc1`, `auraDescription_loc2`, `auraDescription_loc3`, `auraDescription_loc4`, `auraDescription_loc5`, `auraDescription_loc6` FROM `locales_spell`");
+    //                             0        1            2            3            4            5            6            7            8                   9                   10                  11                  12                  13                  14                  15                  16                  17                  18                  19                      20                      21                      22                      23                      24
+    result = GameDb.Query("SELECT `entry`, `name_loc1`, `name_loc2`, `name_loc3`, `name_loc4`, `name_loc5`, `name_loc6`, `name_loc7`, `nameSubtext_loc1`, `nameSubtext_loc2`, `nameSubtext_loc3`, `nameSubtext_loc4`, `nameSubtext_loc5`, `nameSubtext_loc6`, `nameSubtext_loc7`, `description_loc1`, `description_loc2`, `description_loc3`, `description_loc4`, `description_loc5`, `description_loc6`, `description_loc7`, `auraDescription_loc1`, `auraDescription_loc2`, `auraDescription_loc3`, `auraDescription_loc4`, `auraDescription_loc5`, `auraDescription_loc6`, `auraDescription_loc7` FROM `locales_spell`");
     if (!result)
         return;
 
@@ -185,24 +185,28 @@ void SpellDBC::LoadFromDB(uint32 build)
         spell.SpellName[4] = fields[4].GetCppString();
         spell.SpellName[5] = fields[5].GetCppString();
         spell.SpellName[6] = fields[6].GetCppString();
-        spell.Rank[1] = fields[7].GetCppString();
-        spell.Rank[2] = fields[8].GetCppString();
-        spell.Rank[3] = fields[9].GetCppString();
-        spell.Rank[4] = fields[10].GetCppString();
-        spell.Rank[5] = fields[11].GetCppString();
-        spell.Rank[6] = fields[12].GetCppString();
-        spell.Description[1] = fields[13].GetCppString();
-        spell.Description[2] = fields[14].GetCppString();
-        spell.Description[3] = fields[15].GetCppString();
-        spell.Description[4] = fields[16].GetCppString();
-        spell.Description[5] = fields[17].GetCppString();
-        spell.Description[6] = fields[18].GetCppString();
-        spell.ToolTip[1] = fields[19].GetCppString();
-        spell.ToolTip[2] = fields[20].GetCppString();
-        spell.ToolTip[3] = fields[21].GetCppString();
-        spell.ToolTip[4] = fields[22].GetCppString();
-        spell.ToolTip[5] = fields[23].GetCppString();
-        spell.ToolTip[6] = fields[24].GetCppString();
+        spell.SpellName[7] = fields[7].GetCppString();
+        spell.Rank[1] = fields[8].GetCppString();
+        spell.Rank[2] = fields[9].GetCppString();
+        spell.Rank[3] = fields[10].GetCppString();
+        spell.Rank[4] = fields[11].GetCppString();
+        spell.Rank[5] = fields[12].GetCppString();
+        spell.Rank[6] = fields[13].GetCppString();
+        spell.Rank[7] = fields[14].GetCppString();
+        spell.Description[1] = fields[15].GetCppString();
+        spell.Description[2] = fields[16].GetCppString();
+        spell.Description[3] = fields[17].GetCppString();
+        spell.Description[4] = fields[18].GetCppString();
+        spell.Description[5] = fields[19].GetCppString();
+        spell.Description[6] = fields[20].GetCppString();
+        spell.Description[7] = fields[21].GetCppString();
+        spell.ToolTip[1] = fields[22].GetCppString();
+        spell.ToolTip[2] = fields[23].GetCppString();
+        spell.ToolTip[3] = fields[24].GetCppString();
+        spell.ToolTip[4] = fields[25].GetCppString();
+        spell.ToolTip[5] = fields[26].GetCppString();
+        spell.ToolTip[6] = fields[27].GetCppString();
+        spell.ToolTip[7] = fields[28].GetCppString();
 
     } while (result->NextRow());
 }

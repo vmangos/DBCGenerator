@@ -6,7 +6,7 @@ extern Database GameDb;
 void WorldSafeLocsDBC::LoadFromDB(uint32 build)
 {
     //                           0     1         2             3             4             5       6
-    std::string query = "SELECT `id`, `map_id`, `position_x`, `position_y`, `position_z`, `name`, `nameFlags` FROM `world_safe_locs`";
+    std::string query = "SELECT `id`, `map_id`, `position_x`, `position_y`, `position_z`, `name`, `name_flags` FROM `world_safe_locs`";
     if (build)
         query += " WHERE `build`=" + std::to_string(build);
 
@@ -32,7 +32,7 @@ void WorldSafeLocsDBC::LoadFromDB(uint32 build)
     } while (result->NextRow());
 
     //                             0        1            2            3            4            5            6
-    result = GameDb.Query("SELECT `entry`, `name_loc1`, `name_loc2`, `name_loc3`, `name_loc4`, `name_loc5`, `name_loc6` FROM `locales_world_safe_locs`");
+    result = GameDb.Query("SELECT `entry`, `name_loc1`, `name_loc2`, `name_loc3`, `name_loc4`, `name_loc5`, `name_loc6`, `name_loc7` FROM `locales_world_safe_locs`");
     if (!result)
         return;
 
@@ -52,6 +52,7 @@ void WorldSafeLocsDBC::LoadFromDB(uint32 build)
                 loc.Name[4] = fields[4].GetCppString();
                 loc.Name[5] = fields[5].GetCppString();
                 loc.Name[6] = fields[6].GetCppString();
+                loc.Name[7] = fields[7].GetCppString();
                 break;
             }
         }
