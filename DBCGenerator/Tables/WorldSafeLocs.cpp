@@ -5,8 +5,8 @@ extern Database GameDb;
 
 void WorldSafeLocsDBC::LoadFromDB(uint32 build)
 {
-    //                           0     1         2             3             4             5       6
-    std::string query = "SELECT `id`, `map_id`, `position_x`, `position_y`, `position_z`, `name`, `name_flags` FROM `world_safe_locs`";
+    //                           0     1         2             3             4             5            6            7            8            9            10           11           12           13
+    std::string query = "SELECT `id`, `map_id`, `position_x`, `position_y`, `position_z`, `name_enUS`, `name_koKR`, `name_frFR`, `name_deDE`, `name_enCN`, `name_zhTW`, `name_esES`, `name_ptPT`, `name_Mask` FROM `dbc_world_safe_locs`";
     if (build)
         query += " WHERE `build`=" + std::to_string(build);
 
@@ -26,36 +26,15 @@ void WorldSafeLocsDBC::LoadFromDB(uint32 build)
         loc.Y = fields[3].GetFloat();
         loc.Z = fields[4].GetFloat();
         loc.Name[0] = fields[5].GetCppString();
-        loc.NameFlags = fields[6].GetUInt32();
+        loc.Name[1] = fields[6].GetCppString();
+        loc.Name[2] = fields[7].GetCppString();
+        loc.Name[3] = fields[8].GetCppString();
+        loc.Name[4] = fields[9].GetCppString();
+        loc.Name[5] = fields[10].GetCppString();
+        loc.Name[6] = fields[11].GetCppString();
+        loc.Name[7] = fields[12].GetCppString();
+        loc.NameFlags = fields[13].GetUInt32();
         rows.push_back(loc);
-
-    } while (result->NextRow());
-
-    //                             0        1            2            3            4            5            6
-    result = GameDb.Query("SELECT `entry`, `name_loc1`, `name_loc2`, `name_loc3`, `name_loc4`, `name_loc5`, `name_loc6`, `name_loc7` FROM `locales_world_safe_locs`");
-    if (!result)
-        return;
-
-    do
-    {
-        DbField* fields = result->fetchCurrentRow();
-
-        uint32 id = fields[0].GetUInt32();
-
-        for (auto& loc : rows)
-        {
-            if (loc.Id == id)
-            {
-                loc.Name[1] = fields[1].GetCppString();
-                loc.Name[2] = fields[2].GetCppString();
-                loc.Name[3] = fields[3].GetCppString();
-                loc.Name[4] = fields[4].GetCppString();
-                loc.Name[5] = fields[5].GetCppString();
-                loc.Name[6] = fields[6].GetCppString();
-                loc.Name[7] = fields[7].GetCppString();
-                break;
-            }
-        }
 
     } while (result->NextRow());
 }

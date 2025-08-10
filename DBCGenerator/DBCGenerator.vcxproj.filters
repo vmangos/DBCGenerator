@@ -26,6 +26,9 @@
     <ClCompile Include="Tables\WorldSafeLocs.cpp">
       <Filter>Tables</Filter>
     </ClCompile>
+    <ClCompile Include="Tables\TaxiNodes.cpp">
+      <Filter>Tables</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Database\Database.h">
@@ -62,6 +65,9 @@
       <Filter>Tables</Filter>
     </ClInclude>
     <ClInclude Include="Tables\WorldSafeLocs.h">
+      <Filter>Tables</Filter>
+    </ClInclude>
+    <ClInclude Include="Tables\TaxiNodes.h">
       <Filter>Tables</Filter>
     </ClInclude>
   </ItemGroup>

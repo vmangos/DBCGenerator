@@ -15,6 +15,7 @@
 #include "Tables\AreaTrigger.h"
 #include "Tables\Spell.h"
 #include "Tables\SkillLineAbility.h"
+#include "Tables\TaxiNodes.h"
 #include "Tables\WorldSafeLocs.h"
 
 Database GameDb;
@@ -40,17 +41,17 @@ std::string MakeConnectionString()
     printf("User: ");
     getline(std::cin, mysql_user);
     if (mysql_user.empty())
-        mysql_user = "root";
+        mysql_user = "mangos";
 
     printf("Password: ");
     getline(std::cin, mysql_pass);
     if (mysql_pass.empty())
-        mysql_pass = "root";
+        mysql_pass = "mangos";
 
     printf("Database: ");
     getline(std::cin, mysql_db);
     if (mysql_db.empty())
-        mysql_db = "mangos";
+        mysql_db = "tw_world";
 
     return mysql_host + ";" + mysql_port + ";" + mysql_user + ";" + mysql_pass + ";" + mysql_db;
 }
@@ -68,53 +69,35 @@ int main()
         return 1;
     }
 
-    printf("\nClient Build:\n");
-    printf("> ");
-    uint32 build = GetUInt32();
-
-    printf("\nSelect table:\n");
-    printf("1. spell_template\n");
-    printf("2. skill_line_ability\n");
-    printf("3. areatrigger_template\n");
-    printf("4. world_safe_locs\n");
-    printf("> ");
-    uint32 option = GetUInt32();
-
-    std::unique_ptr<DBCFile> dbc;
-    switch (option)
     {
-        case 1: // spell_template
-        {
-            dbc = std::make_unique<SpellDBC>();
-            break;
-        }
-        case 2: // skill_line_ability
-        {
-            dbc = std::make_unique<SkillLineAbilityDBC>();
-            break;
-        }
-        case 3: // areatrigger_template
-        {
-            dbc = std::make_unique<AreaTriggerDBC>();
-            break;
-        }
-        case 4: // world_safe_locs
-        {
-            dbc = std::make_unique<WorldSafeLocsDBC>();
-            break;
-        }
-        default:
-        {
-            printf("Wrong selection.\n");
-            return 1;
-        }
+        std::unique_ptr<AreaTriggerDBC> dbc = std::make_unique<AreaTriggerDBC>();
+        dbc->LoadFromDB(0);
+        dbc->SaveToDBC();
     }
 
-    printf("Loading database...\n");
-    dbc->LoadFromDB(build);
+    {
+        std::unique_ptr<SkillLineAbilityDBC> dbc = std::make_unique<SkillLineAbilityDBC>();
+        dbc->LoadFromDB(0);
+        dbc->SaveToDBC();
+    }
 
-    printf("Exporting to dbc...\n");
-    dbc->SaveToDBC();
+    {
+        std::unique_ptr<SpellDBC> dbc = std::make_unique<SpellDBC>();
+        dbc->LoadFromDB(0);
+        dbc->SaveToDBC();
+    }
+
+    {
+        std::unique_ptr<TaxiNodesDBC> dbc = std::make_unique<TaxiNodesDBC>();
+        dbc->LoadFromDB(0);
+        dbc->SaveToDBC();
+    }
+
+    {
+        std::unique_ptr<WorldSafeLocsDBC> dbc = std::make_unique<WorldSafeLocsDBC>();
+        dbc->LoadFromDB(0);
+        dbc->SaveToDBC();
+    }
 
     printf("Done.");
     getchar();

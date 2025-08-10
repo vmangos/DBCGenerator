@@ -87,6 +87,7 @@
     <ClInclude Include="Defines\ByteBuffer.h" />
     <ClInclude Include="Defines\Common.h" />
     <ClInclude Include="Defines\DBCFile.h" />
+    <ClInclude Include="Tables\TaxiNodes.h" />
     <ClInclude Include="Tables\WorldSafeLocs.h" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +99,7 @@
     <ClCompile Include="Tables\AreaTrigger.cpp" />
     <ClCompile Include="Tables\SkillLineAbility.cpp" />
     <ClCompile Include="Tables\Spell.cpp" />
+    <ClCompile Include="Tables\TaxiNodes.cpp" />
     <ClCompile Include="Tables\WorldSafeLocs.cpp" />
     <ClInclude Include="Tables\AreaTrigger.h" />
     <ClInclude Include="Tables\SkillLineAbility.h" />
